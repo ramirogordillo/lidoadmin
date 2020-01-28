@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- CSS Personalizado -->
+  <link rel="stylesheet" href="assets/css/sisadmin.css">
+  <!-- CSS Bootstrap -->
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+
+  <title>Sis Admin</title>
+
+</head>
+<body>
+<div class="container">
+
+  <div class="media">
+    <img src="imagenes/usuario.svg" class="mr-3 mx-auto" id="vertalign">
+  </div>
+
+  <div class="centrado">
+
+    <div class="card sombreado">
+      <div class="card-body">  
+        <form action="authenticate.php" method="post">
+
+          <div class="form-group">
+            <label for="usuario">Usuario</label>
+            <input type="text" class="form-control" name="usuario" placeholder="Usuario" id="usuario" required>
+          </div>
+
+          <div class="form-group">
+            <label for="contrasena">Contraseña</label>
+            <input type="password" class="form-control" name="contrasena" placeholder="Contraseña" id="contrasena" required>
+          </div>
+
+          <div class="text-center card-body">
+            <input type="submit" class="btn btn-primary" value="Iniciar Sesión">
+          </div>
+        </form>
+      </div>
+    </div>
+</div>
+  </div>
+</body>
+  <!-- JavaScript para Bootstrap-->
+  <!-- jQuery, Popper.js, Bootstrap JS -->     
+  <script src="assets/jquery/jquery-3.4.1.slim.min.js"></script>
+  <script src="assets/popper/popper.min.js"></script>
+  <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+
+  </html>

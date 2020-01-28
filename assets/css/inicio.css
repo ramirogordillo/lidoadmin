@@ -1,0 +1,14 @@
+.centrado {
+  width: 300px;
+  margin: 0 auto;
+}
+
+.sombreado {
+  box-shadow: 0 10px 30px rgba(0,0,0,.1);
+}
+
+#vertalign {
+  margin-top: 100px;
+  width: 100px;
+  padding-bottom: 20px;
+}

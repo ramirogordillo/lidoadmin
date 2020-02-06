@@ -75,7 +75,8 @@ $results=mysqli_query($con,$query);
 			foreach ($row as $col => $val) {
 				echo ucfirst($col)."= ".$val."<br>";
 			}
-			echo '<a href="#" class="btn btn-primary mt-4">Editar cuenta de usuario</a>';
+			echo '<a href="#" class="btn btn-primary mt-4 mr-4">Editar</a>';
+			echo '<a href="#" class="btn btn-danger mt-4">Eliminar</a>';
 			echo "</div>";
 			echo "</div>";
 		}

@@ -52,7 +52,7 @@ if (!isset($_SESSION['loggedin'])) {
       </div>
       <ul class="navbar-nav ml-auto">
         <!-- Nav Item - User Information -->
-        <p class="my-auto small text-muted"><?=ucfirst($_SESSION['name'])?></p>
+        <p class="my-auto small text-muted"><?=ucfirst($_SESSION['usuario'])?></p>
         <li class="nav-item dropdown no-arrow">
           <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <img class="img-profile rounded-circle" src="../imagenes/usuario.svg">

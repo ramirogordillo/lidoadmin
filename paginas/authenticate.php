@@ -4,7 +4,7 @@ session_start();
 $DATABASE_HOST = 'localhost';
 $DATABASE_USER = 'root';
 $DATABASE_PASS = '';
-$DATABASE_NAME = 'phplogin';
+$DATABASE_NAME = 'lidoadmin';
 // Try and connect using the info above.
 $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
 if ( mysqli_connect_errno() ) {
@@ -19,7 +19,7 @@ if ( !isset($_POST['usuario'], $_POST['contrasena']) ) {
 }
 
 // Prepare our SQL, preparing the SQL statement will prevent SQL injection.
-if ($stmt = $con->prepare('SELECT id, contrasena FROM accounts WHERE usuario = ?')) {
+if ($stmt = $con->prepare('SELECT id, contrasena FROM cuentas WHERE usuario = ?')) {
 	// Bind parameters (s = string, i = int, b = blob, etc), in our case the username is a string so we use "s"
 	$stmt->bind_param('s', $_POST['usuario']);
 	$stmt->execute();
@@ -36,7 +36,7 @@ if ($stmt = $con->prepare('SELECT id, contrasena FROM accounts WHERE usuario = ?
 		// Create sessions so we know the user is logged in, they basically act like cookies but remember the data on the server.
 			session_regenerate_id();
 			$_SESSION['loggedin'] = TRUE;
-			$_SESSION['name'] = $_POST['usuario'];
+			$_SESSION['usuario'] = $_POST['usuario'];
 			$_SESSION['id'] = $id;
 			header('Location: dashboard.php');
 		} else {

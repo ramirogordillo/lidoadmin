@@ -3,7 +3,7 @@
 $DATABASE_HOST = 'localhost';
 $DATABASE_USER = 'root';
 $DATABASE_PASS = '';
-$DATABASE_NAME = 'phplogin';
+$DATABASE_NAME = 'lidoadmin';
 // Try and connect using the info above.
 $con = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
 if (mysqli_connect_errno()) {
@@ -12,13 +12,14 @@ if (mysqli_connect_errno()) {
 }
 
 // Now we check if the data was submitted, isset() function will check if the data exists.
-if (!isset($_POST['usuario'], $_POST['contrasena'], $_POST['nombre'], $_POST['apellido'], $_POST['email'])) {
+if (!isset($_POST['usuario'], $_POST['contrasena'], $_POST['email'], $_POST['nivel'])) {
 	// Could not get the data that should have been sent.
 	die ('Por favor complete todos los datos de registro!');
 }
 // Make sure the submitted registration values are not empty.
-if (empty($_POST['usuario']) || empty($_POST['contrasena']) || empty($_POST['nombre']) || empty($_POST['apellido']) || empty($_POST['email'])) {
+if (empty($_POST['usuario']) || empty($_POST['contrasena']) || empty($_POST['email']) || empty($_POST['nivel'])) {
 	// One or more values are empty.
+	echo '2';
 	die ('Por favor complete todos los datos de registro');
 }
 if (preg_match('/[A-Za-z0-9]+/', $_POST['usuario']) == 0) {
@@ -31,7 +32,7 @@ if (strlen($_POST['contrasena']) > 15 || strlen($_POST['contrasena']) < 8) {
 	die ('Contraseña debe tener entre 8 y 15 caracteres!');
 }
 // We need to check if the account with that usuario exists.
-if ($stmt = $con->prepare('SELECT id, contrasena FROM accounts WHERE usuario = ?')) {
+if ($stmt = $con->prepare('SELECT id, contrasena FROM cuentas WHERE usuario = ?')) {
 	// Bind parameters (s = string, i = int, b = blob, etc), hash the contrasena using the PHP contrasena_hash function.
 	$stmt->bind_param('s', $_POST['usuario']);
 	$stmt->execute();
@@ -42,10 +43,10 @@ if ($stmt = $con->prepare('SELECT id, contrasena FROM accounts WHERE usuario = ?
 		echo 'El usuario ya existe, por favor ingrese otro usuario!';
 	} else {
 	// usuario doesnt exists, inserts new account
-		if ($stmt = $con->prepare('INSERT INTO accounts (usuario, contrasena, nombre, apellido, email) VALUES (?, ?, ?, ?, ?)')) {
+		if ($stmt = $con->prepare('INSERT INTO cuentas (usuario, contrasena, email, nivel) VALUES (?, ?, ?, ?)')) {
 	// We do not want to expose contrasenas in our database, so hash the contrasena and use contrasena_verify when a user logs in.
 			$contrasena = password_hash($_POST['contrasena'], PASSWORD_DEFAULT);
-			$stmt->bind_param('sss', $_POST['usuario'], $contrasena, $_POST['nombre'], $_POST['apellido'], $_POST['email']);
+			$stmt->bind_param('ssss', $_POST['usuario'], $contrasena, $_POST['email'], $_POST['nivel']);
 			$stmt->execute();
 			header('Location: cuentas.php');
 		} else {

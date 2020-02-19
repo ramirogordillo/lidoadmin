@@ -19,16 +19,6 @@ if (!isset($_SESSION['loggedin'])) {
         <form action="registrar.php" method="post" autocomplete="off">
 
           <div class="form-group">
-            <label for="nombre">Nombre</label>
-            <input type="text" class="form-control" name="nombre" placeholder="Nombre" id="nombre">
-          </div>
-
-          <div class="form-group">
-            <label for="apellido">Apellido</label>
-            <input type="text" class="form-control" name="apellido" placeholder="Apellido" id="apellido">
-          </div>
-
-          <div class="form-group">
             <label for="usuario">Usuario</label>
             <input type="text" class="form-control" name="usuario" placeholder="Usuario" id="usuario" required>
           </div>
@@ -41,6 +31,11 @@ if (!isset($_SESSION['loggedin'])) {
           <div class="form-group">
             <label for="email">E-mail</label>
             <input type="email" class="form-control" name="email" placeholder="E-mail" id="email" required>
+          </div>
+
+          <div class="form-group">
+            <label for="nivel">Nivel</label>
+            <input type="text" class="form-control" name="nivel" placeholder="Nivel" id="nivel" required>
           </div>
 
           <div class="text-center card-body">
